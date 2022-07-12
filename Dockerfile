@@ -21,7 +21,7 @@
 # Add golang as the base image for the build stage.
 FROM golang:1.18.3 AS build
 
-# Set the default work directory as “/hbBin” in the container.
+# Set the default work directory as “/harbourbridge_bin” in the container.
 WORKDIR /harbourbridge_bin
 
 # Copy HarbourBridge’s source code into the working directory.
@@ -43,7 +43,7 @@ WORKDIR /harbourbridge/harbour_bridge_output
 RUN mkdir /harbourbridge/bin
 # Create directory to store the dump files. This directory binds with the host directory that contains the dump files of the source database.
 RUN mkdir /harbourbridge/source_dump
-# Copy the HarbourBridge binary from the build stage's hbBin directory to the release stage's harbourbridge/bin directory.
+# Copy the HarbourBridge binary from the build stage's harbourbridge_bin directory to the release stage's harbourbridge/bin directory.
 COPY --from=build /harbourbridge_bin/harbourbridge /harbourbridge/bin
 
 # Add Python3 to support GCloud SDK.
